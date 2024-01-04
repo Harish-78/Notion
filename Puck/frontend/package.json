@@ -1,0 +1,79 @@
+{
+  "name": "notion",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@editorjs/editorjs": "^2.28.2",
+    "@editorjs/header": "^2.8.1",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@measured/puck": "^0.13.1",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.10",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@salesforce/design-system-react": "^0.10.58",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@tinymce/tinymce-react": "^4.3.2",
+    "@xeger/quill-image-actions": "^0.7.2",
+    "@xeger/quill-image-formats": "^0.7.2",
+    "autoprefixer": "^9.8.6",
+    "axios": "^1.6.3",
+    "cloudinary-video-player": "^1.10.4",
+    "dompurify": "^3.0.6",
+    "draft-convert": "^2.1.13",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "mui-player": "^1.8.1",
+    "postcss": "^8.4.32",
+    "quill-image-resize-module-react": "^3.0.0",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-draft-wysiwyg": "^1.15.0",
+    "react-dropzone": "^14.2.3",
+    "react-editor-js": "^2.1.0",
+    "react-grid-layout": "^1.4.4",
+    "react-icons": "^4.12.0",
+    "react-player": "^2.14.1",
+    "react-quill": "^2.0.0",
+    "react-router": "^6.21.1",
+    "react-router-dom": "^6.21.1",
+    "react-scripts": "^5.0.1",
+    "react-search-box": "^3.0.0",
+    "react-text-search-input": "^1.0.7",
+    "socket.io-client": "^4.7.2",
+    "styled-components": "^6.1.6",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
