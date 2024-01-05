@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -92,13 +92,7 @@ const list = [
   },
   { name: "Funds", icons: <PaidIcon />, to: "/funds" },
 ];
-const InventoryScreen = () => {
-  const [componentName, setComponentName] = useState("");
-  React.useEffect(() => {
-    const Component = InventoryScreen.name || "UnknownComponent";
-    setComponentName(Component);
-  }, []);
-
+const HomeScreen = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -109,16 +103,9 @@ const InventoryScreen = () => {
     setOpen(false);
   };
   const navigate = useNavigate();
-  const handleOpenEditor = () => {
-    navigate(`/editor?redirecturl=${window.location.pathname}`, {
-      state: { data: componentName },
-    });
+  const handleOnClick = () => {
+    navigate("/editor");
   };
-
-  const handleOpenViewer = () => {
-    navigate(`/viewdraft`, { state: { data: componentName } });
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -176,11 +163,9 @@ const InventoryScreen = () => {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
+
           <Typography variant="h5" textAlign={"center"}>
-            InventoryScreen
-          </Typography>
-          <Typography textAlign={"center"}>
-            This is customer InventoryScreen
+            HomeScreen
           </Typography>
         </Main>
       </Box>
@@ -188,4 +173,4 @@ const InventoryScreen = () => {
   );
 };
 
-export default InventoryScreen;
+export default HomeScreen;

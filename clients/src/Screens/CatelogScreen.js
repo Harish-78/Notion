@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -21,7 +21,10 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import EditIcon from "@mui/icons-material/Edit";
 import PaidIcon from "@mui/icons-material/Paid";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Autocomplete, Typography } from "@mui/material";
+import { Render } from "@measured/puck";
+import DataContext from "../context/DataContext";
+import { TextSearchInput } from "react-text-search-input";
 
 const drawerWidth = 240;
 
@@ -92,7 +95,17 @@ const list = [
   },
   { name: "Funds", icons: <PaidIcon />, to: "/funds" },
 ];
-const FundScreen = () => {
+const CatalogScreen = () => {
+  const [componentName, setComponentName] = useState("");
+  React.useEffect(() => {
+    const Component = CatalogScreen.name || "UnknownComponent";
+    setComponentName(Component);
+
+    // setTimeout(() => {
+    //   handleClickOpen();
+    // }, 2000);
+  }, []);
+
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -103,9 +116,18 @@ const FundScreen = () => {
     setOpen(false);
   };
   const navigate = useNavigate();
-  const handleOnClick = () => {
-    navigate("/editor");
+  const handleOpenEditor = () => {
+    navigate(`/editor?redirecturl=${window.location.pathname}`, {
+      state: { data: componentName },
+    });
   };
+
+  const { config, data } = React.useContext(DataContext);
+
+  const componentData = data?.filter(
+    (data) => data.componentName === componentName
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -163,17 +185,33 @@ const FundScreen = () => {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-
-          <Typography variant="h5" textAlign={"center"}>
-            FundScreen
-          </Typography>
-          <Typography textAlign={"center"}>
-            This is customer FundScreen
-          </Typography>
+          <div className=" flex justify-end m-3">
+            <div className="m-2">
+              <TextSearchInput
+                root={document.getElementById("root")}
+                positionOptions={{
+                  top: "12%",
+                  right: 20,
+                }}
+                styles={{ padding: "10px" }}
+              />
+            </div>
+          </div>
+          {componentData?.length ? (
+            componentData.map((x, index) => (
+              <div key={index}>
+                <Render config={config} data={x.data} />
+              </div>
+            ))
+          ) : (
+            <Typography variant="h5" textAlign={"center"}>
+              CatalogScreen
+            </Typography>
+          )}
         </Main>
       </Box>
     </ThemeProvider>
   );
 };
 
-export default FundScreen;
+export default CatalogScreen;

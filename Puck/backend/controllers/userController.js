@@ -3,9 +3,7 @@ const user = require("../models/userSchema.js");
 //get the specified wiki using the component name
 const getPuck = async (req, res) => {
   try {
-    const { componentName } = req.params;
-    const db = await user.findOne({ componentName: componentName });
-
+    const db = await user.find();
     if (db) {
       return res.status(200).send({ message: "Data fetched successfully", db });
     } else {
@@ -32,29 +30,31 @@ const addPuck = async (req, res) => {
   }
 };
 
-// const updateUser = async (req, res) => {
-//   try {
-//     const { _id, ...updateData } = req.body; // Assuming the updated data is sent in the request body
+const updateWiki = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const newData = req.body;
 
-//     console.log("Data :", updateData);
-//     console.log("Id :", _id);
+    console.log("Data :", newData);
+    console.log("Id :", id);
 
-//     const updatedUser = await user.findByIdAndUpdate(_id, updateData, {
-//       new: true,
-//     });
+    const updatedWiki = await user.findByIdAndUpdate(id, newData, {
+      new: true,
+      runValidators: true,
+    });
 
-//     if (!updatedUser) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
+    if (!updatedWiki) {
+      return res.status(404).json({ message: "Wiki not found" });
+    }
 
-//     res
-//       .status(200)
-//       .json({ message: "Updated successfully", user: updatedUser });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
+    res
+      .status(200)
+      .json({ message: "Wiki Updated successfully", user: updatedWiki });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 //delete
 const deletePuck = async (req, res) => {
@@ -81,4 +81,5 @@ module.exports = {
   getPuck,
   addPuck,
   deletePuck,
+  updateWiki,
 };

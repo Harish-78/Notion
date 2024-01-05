@@ -22,6 +22,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import PaidIcon from "@mui/icons-material/Paid";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
+import { Render } from "@measured/puck";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import DataContext from "../context/DataContext";
+import { EditorScreen } from "../Components/EditorScreen";
 
 const drawerWidth = 240;
 
@@ -115,8 +124,17 @@ const InventoryScreen = () => {
     });
   };
 
-  const handleOpenViewer = () => {
-    navigate(`/viewdraft`, { state: { data: componentName } });
+  const { config, data } = React.useContext(DataContext);
+
+  const componentData = data?.filter(
+    (data) => data.componentName === componentName
+  );
+
+  const handleEdit = async (data) => {
+    console.log(data);
+    navigate(`/editor?redirecturl=${window.location.pathname}`, {
+      state: { userData: data },
+    });
   };
 
   return (
@@ -182,15 +200,23 @@ const InventoryScreen = () => {
                 Add Wiki
               </Button>
             </div>
-            <div className="m-2">
-              <Button variant="contained" onClick={handleOpenViewer}>
-                View Wiki
-              </Button>
-            </div>
           </div>
-          <Typography variant="h5" textAlign={"center"}>
-            InventoryScreen
-          </Typography>
+          {componentData?.length ? (
+            componentData.map((x, index) => (
+              <div key={index} className="border-[2px] border-dotted">
+                <div className="flex justify-end m-5">
+                  <Button variant="contained" onClick={() => handleEdit(x)}>
+                    Edit
+                  </Button>
+                </div>
+                <Render config={config} data={x.data} />
+              </div>
+            ))
+          ) : (
+            <Typography variant="h5" textAlign={"center"}>
+              InventoryScreen
+            </Typography>
+          )}
         </Main>
       </Box>
     </ThemeProvider>

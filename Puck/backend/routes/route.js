@@ -4,10 +4,12 @@ const {
   addPuck,
   getPuck,
   deletePuck,
+  updateWiki,
 } = require("../controllers/userController");
 
-router.get(`/getpuck/:componentName`, getPuck);
+router.get(`/getpuck`, getPuck);
 router.post("/addpuck", addPuck);
+router.patch("/update/:id", updateWiki);
 router.delete("/deletepuck/:id", deletePuck);
 
 module.exports = router;

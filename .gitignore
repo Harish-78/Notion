@@ -3,7 +3,7 @@
 # dependencies
 /Puck/frontend/node_modules
 /Puck/backend/node_modules
-/client/node_modules
+/clients/node_modules
 /.pnp
 .pnp.js
 
