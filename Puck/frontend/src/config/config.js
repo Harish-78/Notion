@@ -362,6 +362,7 @@ const config = {
             <DropZone
               zone="right-column"
               style={{
+                
                 margin: "10px",
                 padding: "10px",
               }}
@@ -429,13 +430,13 @@ const config = {
       },
       render: ({ imageUrl, alt, width, height }) => {
         return (
-          <div>
+          <div className="flex justify-center items-center">
             <img src={imageUrl} alt={alt} width={width} height={height} />
           </div>
         );
       },
     },
-    //<image/>
+    //<link/>
     Link: {
       fields: {
         title: {
@@ -571,7 +572,7 @@ const config = {
       },
       render: ({ videoUrl, height, width,padding }) => {
         return (
-          <div>
+          <div className="flex justify-center items-center">
             <ReactPlayer
             style={{padding: padding + "px",}}
               url={videoUrl}
