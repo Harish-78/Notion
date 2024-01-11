@@ -12,7 +12,7 @@ const config = {
   },
   categories: {
     Layouts: {
-      components: ["Columns", "Row", "VerticalSpace"],
+      components: ["Columns","Columns3", "Row", "VerticalSpace"],
       label: "Text",
       type: "text",
       defaultExpanded: true,
@@ -347,6 +347,54 @@ const config = {
         );
       },
     },
+    Columns3: {
+      render: () => {
+        return (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              
+              gap: 16,
+              margin: "10px",
+              padding: "10px",
+            }}
+          >
+            <DropZone
+              zone="left-column"
+              style={{
+                display: "flex ",
+                margin: "3px",
+                padding: "3px",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            />
+            <DropZone
+              zone="center-column"
+              style={{
+                display: "flex ",
+                margin: "3px",
+                padding: "3px",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+
+            />
+            <DropZone
+              zone="right-column"
+              style={{
+                display: "flex ",
+                margin: "3px",
+                padding: "3px",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            />
+          </div>
+        );
+      },
+    },
 
     Row: {
       render: () => {
@@ -362,6 +410,7 @@ const config = {
             <DropZone
               zone="right-column"
               style={{
+
                 margin: "10px",
                 padding: "10px",
               }}
@@ -370,6 +419,31 @@ const config = {
         );
       },
     },
+    // Row2: {
+    //   render: () => {
+    //     return (
+    //       <div style={{ display: "grid",gridTemplateRows:"1fr 1fr", gap: 16,
+    //       margin: "10px",
+    //       padding: "10px", }}>
+    //         <DropZone
+    //           zone="left-column"
+    //           style={{
+    //             margin: "10px",
+    //             padding: "10px",
+    //           }}
+    //         />
+    //         <DropZone
+    //           zone="right-column"
+    //           style={{
+
+    //             margin: "10px",
+    //             padding: "10px",
+    //           }}
+    //         />
+    //       </div>
+    //     );
+    //   },
+    // },
 
     VerticalSpace: {
       render: () => {
